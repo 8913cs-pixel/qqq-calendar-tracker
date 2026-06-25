@@ -1,0 +1,29 @@
+name: QQQ Calendar Tracker
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Packages
+        run: pip install -r requirements.txt
+
+      - name: Run Script
+        run: python qqq_calendar.py
+
+      - name: Upload Excel
+        uses: actions/upload-artifact@v4
+        with:
+          name: qqq-calendar
+          path: QQQ_Calendar_Spreads.xlsx
